@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import Utility from '../../Utility';
-import {AppThunk} from '../store';
+import {AppDispatch, AppThunk} from '../store';
 
 export type noteType = {
   id: number;
@@ -64,9 +64,13 @@ const saveNotes =
     }
   };
 
-export const fetchNotes = (): AppThunk => async dispatch => {
-  const data = await Utility.getNotes();
-  dispatch(addAllNotes(data));
+export const fetchNotes = () => async (dispatch: AppDispatch) => {
+  try {
+    const data = await Utility.getNotes();
+    dispatch(addAllNotes(data));
+  } catch (error) {
+    console.warn(error);
+  }
 };
 
 export default notesSlice.reducer;

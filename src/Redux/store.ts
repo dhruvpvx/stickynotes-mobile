@@ -1,14 +1,16 @@
 import {configureStore, Action} from '@reduxjs/toolkit';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {ThunkAction} from 'redux-thunk';
-import Reducers, {RootState} from './Reducers';
+import NotesSlice, {noteType} from './Slices/NotesSlice';
 
 const store = configureStore({
-  reducer: Reducers,
+  reducer: NotesSlice,
 });
-
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
+export const useAppSelector = (selector: (state: RootState) => any) =>
+  useSelector(selector);
+export type AppThunk = ThunkAction<void, noteType, unknown, Action<string>>;
 
 export default store;

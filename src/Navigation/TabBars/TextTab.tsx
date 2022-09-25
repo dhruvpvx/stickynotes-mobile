@@ -1,28 +1,22 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Container, TextNoteCard} from '../../Copmponets';
-import {Colors} from '../../res';
+import {noteType} from '../../Redux/Slices/NotesSlice';
+import {useAppSelector} from '../../Redux/store';
 
 type Props = {};
 
 const TextTab = (props: Props) => {
+  const data = useAppSelector((state: any) =>
+    state.allNotes.filter((note: noteType) => note.type === 'text'),
+  );
+
+  const renderData = (item: noteType) => {
+    return <TextNoteCard key={item.id} {...item} />;
+  };
+
   return (
-    <Container>
-      <TextNoteCard />
-      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
-      <TextNoteCard content="Lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
-      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
-      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
-      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
-    </Container>
+    <Container>{data.map((item: noteType) => renderData(item))}</Container>
   );
 };
 
 export default TextTab;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.BACKGROUND,
-  },
-});

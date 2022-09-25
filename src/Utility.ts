@@ -7,7 +7,19 @@ class Utility {
       if (notes !== null) {
         return JSON.parse(notes);
       } else {
-        return [];
+        return [
+          {
+            id: 1,
+            title: 'Welcome to Notes App',
+            content: 'This is a sample note. You can edit or delete it.',
+            type: 'text',
+            label: 'Personal',
+            media_url: '',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            isEdited: false,
+          },
+        ];
       }
     } catch (error) {
       console.log(error);

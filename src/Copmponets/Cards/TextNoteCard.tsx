@@ -4,21 +4,16 @@ import TypeTag from '../TypeTag';
 import TitleBox from '../TitleBox';
 import ThreeDot from '../ThreeDot';
 import {AppStyles} from '../../res';
+import {noteType} from '../../Redux/Slices/NotesSlice';
 
-type Props = {
-  type: string;
-  title: string;
-  content: string;
-};
-
-const TextNoteCard = ({type, title, content}: Props) => {
+const TextNoteCard = ({label, title, content}: noteType) => {
   return (
     <View style={AppStyles.cardStyle}>
       <View style={styles.header}>
-        <TypeTag type={type} />
+        <TypeTag type={label} />
         <ThreeDot />
       </View>
-      <TitleBox title="Write A Story" />
+      <TitleBox title={title} />
       <View style={styles.contentContainer}>
         <Text style={styles.contentText}>{content}</Text>
       </View>
