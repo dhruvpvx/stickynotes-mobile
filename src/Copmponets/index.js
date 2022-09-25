@@ -4,4 +4,17 @@ import TextNoteCard from './Cards/TextNoteCard';
 import TypeTag from './TypeTag';
 import PhotoNoteCard from './Cards/PhotoNoteCard';
 import AddNoteButton from './AddNoteButton';
-export {Header, Container, AddNoteButton, TextNoteCard, TypeTag, PhotoNoteCard};
+import AddTextNote from './AddModals/AddTextNote';
+import NotesAddModal from './AddModals/NotesAddModal';
+import AnimatedModal from './Modal/AnimatedModal';
+export {
+  Header,
+  Container,
+  AddTextNote,
+  AddNoteButton,
+  TextNoteCard,
+  TypeTag,
+  PhotoNoteCard,
+  NotesAddModal,
+  AnimatedModal,
+};

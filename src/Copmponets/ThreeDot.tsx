@@ -5,37 +5,27 @@ import {
   TouchableOpacity,
   DeviceEventEmitter,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {AppImages} from '../res';
 import Menu from './Menu';
 
 type Props = {};
 
-const {width} = Dimensions.get('window');
+const deviceWidth = Dimensions.get('window').width;
 
 const ThreeDot = (props: Props) => {
-  const [visible, setVisible] = React.useState(false);
   const dotRef = React.useRef<TouchableOpacity>(null);
+  const [cordinates, setCordinates] = React.useState({x: 0, y: 0});
   const menuRef = React.useRef<any>(null);
-  const [scrolE, setScrolE] = React.useState(null);
-  const handleXy = () => {
+  const handleXy = useCallback(() => {
     dotRef.current?.measure((x, y, width, height, pageX, pageY) => {
-      menuRef.current?.measure(pageX, pageY);
+      setCordinates({x: pageX - deviceWidth * 0.2, y: pageY});
     });
-  };
-
-  useEffect(() => {
-    const intverl = setInterval(() => {
-      handleXy();
-    }, 1000);
-    return () => {
-      clearInterval(intverl);
-    };
-  }, [scrolE]);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = DeviceEventEmitter.addListener('onScroll', e => {
-      setScrolE(e);
+      handleXy();
     });
     return () => {
       unsubscribe.remove();
@@ -46,14 +36,9 @@ const ThreeDot = (props: Props) => {
     <TouchableOpacity
       ref={dotRef}
       onLayout={handleXy}
-      onPress={() => setVisible(p => !p)}>
+      onPress={() => menuRef.current.show()}>
       <Image source={AppImages.threedDotIcon} style={styles.threeDot} />
-      <Menu
-        ref={menuRef}
-        visible={visible}
-        onPress={() => null}
-        hide={() => setVisible(false)}
-      />
+      <Menu cordinates={cordinates} ref={menuRef} />
     </TouchableOpacity>
   );
 };
@@ -62,7 +47,7 @@ export default ThreeDot;
 
 const styles = StyleSheet.create({
   threeDot: {
-    width: width * 0.075,
+    width: deviceWidth * 0.075,
     height: undefined,
     aspectRatio: 1,
   },
