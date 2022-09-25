@@ -9,10 +9,11 @@ const TextTab = (props: Props) => {
   return (
     <Container>
       <TextNoteCard />
-      <TextNoteCard />
-      <TextNoteCard />
-      <TextNoteCard />
-      <TextNoteCard />
+      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
+      <TextNoteCard content="Lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
+      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
+      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
+      <TextNoteCard content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec" />
     </Container>
   );
 };

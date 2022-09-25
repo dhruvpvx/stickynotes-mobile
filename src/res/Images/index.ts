@@ -5,6 +5,7 @@ const Icons : any = {
   editIcon: require('./pencilIcon.png'),
   shareIcon: require('./shareIcon.png'),
   closeIcon: require('./closeIcon.png'),
+  whilePlus: require('./whilePlus.png'),
 };
 
 export default Icons;

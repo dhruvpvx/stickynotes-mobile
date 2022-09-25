@@ -1,26 +1,26 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Header } from './src/Copmponets'
-import TopTabNavigation from './src/Navigation/TopTabNavigation'
-import { Colors } from './src/res'
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {AddNoteButton, Header} from './src/Copmponets';
+import TopTabNavigation from './src/Navigation/TopTabNavigation';
+import {Colors} from './src/res';
 
-type Props = {}
+type Props = {};
 
 const App = (props: Props) => {
   return (
-
     <SafeAreaView style={styles.container}>
-      <Header title='My Sticky Notes'/>
+      <Header title="My Sticky Notes" />
       <TopTabNavigation />
+      <AddNoteButton />
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.BACKGROUND,
-  }
-})
+  },
+});

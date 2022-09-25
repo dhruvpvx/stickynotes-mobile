@@ -20,9 +20,7 @@ const TextNoteCard = ({type, title, content}: Props) => {
       </View>
       <TitleBox title="Write A Story" />
       <View style={styles.contentContainer}>
-        <Text style={styles.contentText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-        </Text>
+        <Text style={styles.contentText}>{content}</Text>
       </View>
     </View>
   );
@@ -33,7 +31,7 @@ export default TextNoteCard;
 TextNoteCard.defaultProps = {
   type: '',
   title: '',
-  content: '',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec',
 };
 
 const styles = StyleSheet.create({
