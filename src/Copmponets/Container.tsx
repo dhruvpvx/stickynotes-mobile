@@ -1,30 +1,38 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Colors } from '../res'
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Colors} from '../res';
 
 type Props = {
-  children: React.ReactNode,
-  style: any
-}
+  children: React.ReactNode;
+  style: any;
+};
 
 const Container = (props: Props) => {
   return (
-    <View {...props} style={[styles.container, props.style]} >
+    <ScrollView
+      {...props}
+      contentContainerStyle={styles.contentContainerStyle}
+      style={[styles.container, props.style]}>
       {props.children}
-    </View>
-  )
-}
+    </ScrollView>
+  );
+};
 
-export default Container
-
+export default Container;
 
 Container.defaultProps = {
-  style: {}
-}
+  style: {},
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.BACKGROUND,
-  }
-})
+  },
+  contentContainerStyle: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '3%',
+  },
+});
