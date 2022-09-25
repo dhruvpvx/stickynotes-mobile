@@ -2,9 +2,9 @@ import {
   Dimensions,
   Modal,
   StyleSheet,
-  TouchableOpacity,
   Animated,
   Platform,
+  Pressable,
 } from 'react-native';
 import React, {forwardRef, useImperativeHandle} from 'react';
 import MenuButton from './MenuButton';
@@ -20,6 +20,7 @@ const {width, height} = Dimensions.get('window');
 
 const Menu = forwardRef((props: Props, ref: any) => {
   const [cordinates, setCordinates] = React.useState({x: 0, y: 0});
+  const [isVisible, setIsVisible] = React.useState(props.visible);
   const scaleRef = React.useRef(new Animated.Value(0)).current;
   useImperativeHandle(ref, () => ({
     measure: (x: number, y: number) => {
@@ -38,6 +39,7 @@ const Menu = forwardRef((props: Props, ref: any) => {
 
   useEffect(() => {
     if (props.visible) {
+      setIsVisible(true);
       Animated.spring(scaleRef, {
         toValue: 1,
         useNativeDriver: true,
@@ -46,19 +48,23 @@ const Menu = forwardRef((props: Props, ref: any) => {
       Animated.spring(scaleRef, {
         toValue: 0,
         useNativeDriver: true,
-      }).start();
+      }).start(({finished}) => {
+        if (finished) {
+          setIsVisible(false);
+        }
+      });
     }
   }, [props.visible]);
 
   return (
-    <Modal visible={props.visible} style={styles.modal} transparent>
-      <TouchableOpacity onPressOut={props.hide} style={styles.modal}>
+    <Modal visible={isVisible} style={styles.modal} transparent>
+      <Pressable onPressOut={props.hide} style={styles.modal}>
         <Animated.View style={viewStyles}>
           <MenuButton title="Edit" icon="editIcon" />
           <MenuButton title="Share" icon="shareIcon" />
           <MenuButton title="Delete" icon="deleteIcon" />
         </Animated.View>
-      </TouchableOpacity>
+      </Pressable>
     </Modal>
   );
 });
