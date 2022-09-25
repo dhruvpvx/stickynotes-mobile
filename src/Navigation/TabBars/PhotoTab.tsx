@@ -1,17 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Container } from '../../Copmponets'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Container, PhotoNoteCard} from '../../Copmponets';
 
-type Props = {}
+type Props = {};
 
 const PhotoTab = (props: Props) => {
   return (
     <Container>
-      <Text>PhotoTab</Text>
+      <PhotoNoteCard />
+      <PhotoNoteCard />
+      <PhotoNoteCard />
+      <PhotoNoteCard />
+      <PhotoNoteCard />
     </Container>
-  )
-}
+  );
+};
 
-export default PhotoTab
+export default PhotoTab;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

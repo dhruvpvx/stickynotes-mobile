@@ -29,16 +29,16 @@ TypeTag.defaultProps = {
 
 const styles = StyleSheet.create({
   tag: {
-    paddingVertical: '5%',
+    paddingVertical: '3.5%',
     minWidth: 60,
-    minHeight: 30,
+    minHeight: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: '10%',
+    paddingHorizontal: '12%',
     borderRadius: 150,
   },
   tagText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '500',
   },
 });

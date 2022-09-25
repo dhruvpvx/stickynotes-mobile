@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     paddingBottom: '5%',
     paddingLeft: '3%',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
   title: {
