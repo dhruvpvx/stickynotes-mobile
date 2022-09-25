@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {DeviceEventEmitter, ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import {Colors} from '../res';
 
@@ -8,8 +8,13 @@ type Props = {
 };
 
 const Container = (props: Props) => {
+  const onScroll = (e: any) => {
+    DeviceEventEmitter.emit('onScroll', e);
+  };
+
   return (
     <ScrollView
+      onScroll={onScroll}
       {...props}
       contentContainerStyle={styles.contentContainerStyle}
       style={[styles.container, props.style]}>

@@ -11,7 +11,7 @@ const AddNoteButton = (props: Props) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('state', e => {
-      setCurrentIndex(e.data.state.index);
+      setCurrentIndex(e?.data?.state?.index || 0);
     });
     return unsubscribe;
   }, [navigation]);

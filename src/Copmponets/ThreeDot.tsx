@@ -1,12 +1,11 @@
 import {
-  View,
-  Text,
   Image,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  DeviceEventEmitter,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AppImages} from '../res';
 import Menu from './Menu';
 
@@ -18,12 +17,30 @@ const ThreeDot = (props: Props) => {
   const [visible, setVisible] = React.useState(false);
   const dotRef = React.useRef<TouchableOpacity>(null);
   const menuRef = React.useRef<any>(null);
-
+  const [scrolE, setScrolE] = React.useState(null);
   const handleXy = () => {
     dotRef.current?.measure((x, y, width, height, pageX, pageY) => {
       menuRef.current?.measure(pageX, pageY);
     });
   };
+
+  useEffect(() => {
+    const intverl = setInterval(() => {
+      handleXy();
+    }, 1000);
+    return () => {
+      clearInterval(intverl);
+    };
+  }, [scrolE]);
+
+  useEffect(() => {
+    const unsubscribe = DeviceEventEmitter.addListener('onScroll', e => {
+      setScrolE(e);
+    });
+    return () => {
+      unsubscribe.remove();
+    };
+  }, []);
 
   return (
     <TouchableOpacity
